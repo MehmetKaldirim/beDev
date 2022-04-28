@@ -1,30 +1,22 @@
 package com.zeroToDev.controller;
 
 import com.zeroToDev.dto.UserDTO;
-import com.zeroToDev.service.RoleService;
-import com.zeroToDev.service.UserService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/lecture")
+public class LectureController {
 
-    RoleService roleService;
-    UserService userService;
 
-    public UserController(RoleService roleService, UserService userService) {
-        this.roleService = roleService;
-        this.userService = userService;
-    }
 
-    @GetMapping("/create")
+    @GetMapping("/createStory")
     public String createUser(Model model) {
 
         model.addAttribute("user", new UserDTO());
-        model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("users", userService.findAll());
+
 
         return "/user/create";
     }
@@ -34,7 +26,7 @@ public class UserController {
         //model.addAttribute("user", new UserDTO());
         //model.addAttribute("roles", roleService.findAll());
 
-        userService.save(user);
+
         //model.addAttribute("users", userService.findAll());
 
         return "redirect:/user/create";
@@ -43,23 +35,20 @@ public class UserController {
 
     @GetMapping("/update/{username}")
     public String updateUser(@PathVariable("username") String username, Model model ){
-        model.addAttribute("user", userService.findById(username));
-        model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("users", userService.findAll());
 
         return "/user/update";
     }
 
     @PostMapping("/update")
     public String insertUpdate(UserDTO user){
-        userService.update(user);
+
         return "redirect:/user/create";
     }
 
     @GetMapping("/delete/{username}")
     public String deleteUser(@PathVariable("username") String username){
 
-        userService.deleteById(username);
+
 
         return "redirect:/user/create";
     }
