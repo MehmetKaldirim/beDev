@@ -18,7 +18,7 @@ public class LectureController {
         model.addAttribute("user", new UserDTO());
 
 
-        return "/user/create";
+        return "/lecture/create";
     }
 
     @PostMapping("/create")
