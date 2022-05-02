@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<body>
+<div th: th:fragment="header">
+
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    <img th:src="@{/images/beDev.png}"
+                         height="45"
+                         alt="JSOFT Admin"/>
+                </a>
+            </div>
+            <div class="active">
+                <a href="#"> <button class="btn btn-danger navbar-btn">Button</button></a>
+            </div>
+            <div class="navbar-header">
+                <a href="#"> <button class="btn btn-danger navbar-btn">Button</button></a>
+            </div>
+            <div class="navbar-header">
+                <a href="#"> <button class="btn btn-danger navbar-btn">Button</button></a>
+            </div>
+
+            <div class="">
+                <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+            </div>
+            <div class="navbar-header">
+                <a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+            </div>
+
+        </div>
+
+
+    </nav>
+
+</div>
+</body>
+</html>
