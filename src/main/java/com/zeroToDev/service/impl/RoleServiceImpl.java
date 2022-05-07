@@ -1,40 +1,48 @@
 package com.zeroToDev.service.impl;
 
 import com.zeroToDev.dto.RoleDTO;
-import com.zeroToDev.service.CrudService;
+import com.zeroToDev.entity.Role;
+import com.zeroToDev.entity.User;
+import com.zeroToDev.mapper.RoleMapper;
+import com.zeroToDev.repository.RoleRepository;
 import com.zeroToDev.service.RoleService;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements RoleService {
+public class RoleServiceImpl  implements RoleService {
+    private final RoleRepository roleRepository;
+    private final RoleMapper roleMapper;
 
-    @Override
-    public RoleDTO save(RoleDTO object) {
-        return super.save(object.getId(), object);
+    public RoleServiceImpl(RoleRepository roleRepository, RoleMapper roleMapper) {
+        this.roleRepository = roleRepository;
+        this.roleMapper = roleMapper;
     }
 
     @Override
-    public List<RoleDTO> findAll() {
-        return super.findAll();
-    }
+    public List<RoleDTO> listAllRoles() {
 
-    @Override
-    public void deleteById(Long id) {
-        super.deleteById(id);
-    }
 
-    @Override
-    public void update(RoleDTO object) {
-        super.update(object.getId(), object);
-    }
+        // controlling calling me and want all roles and where they are in Repository
+        //how can i call them of coz injection
 
+        List<Role> roleList = roleRepository.findAll();
+        //here i need mechanism convert roleList to RoleDTO = it is Mapper a new Story begin
+        List<RoleDTO> list2= roleList.stream().map(roleMapper :: convertToDto).collect(Collectors.toList());
+        return list2;
+    }
 
     @Override
     public RoleDTO findById(Long id) {
-        return super.findById(id);
+
+        return roleMapper.convertToDto(roleRepository.findById(id).get());
     }
+
+
+
+
 }
 
