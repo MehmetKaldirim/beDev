@@ -32,9 +32,12 @@ public class UserServiceImpl implements UserService  {
         return userList.stream().map(userMapper::convertToDTO).collect(Collectors.toList());
     }
 
+
+
     @Override
-    public User findByUserName(String username) {
-        return userRepository.findByUserName(username);
+    public UserDTO findByUserName(String username) {
+        User user = userRepository.findByUserName(username);
+        return userMapper.convertToDTO(user);
     }
 
     @Override
@@ -46,7 +49,7 @@ public class UserServiceImpl implements UserService  {
 
 
     @Override
-    public void update(UserDTO dto) {
+    public UserDTO update(UserDTO dto) {
         //Find current user
         User addUser = userRepository.findByUserName((dto.getUserName()));
         //Find updated dto to entity object
@@ -55,6 +58,7 @@ public class UserServiceImpl implements UserService  {
         converterUser.setId(addUser.getId());
         //save updated user
         userRepository.save(converterUser);
+        return findByUserName(dto.getUserName());
     }
 
 

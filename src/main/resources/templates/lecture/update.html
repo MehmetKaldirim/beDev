@@ -26,21 +26,44 @@
 
                             <section class="panel panel-transparent">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Task Update</h2>
+                                    <h2 class="panel-title">Create Your Story</h2>
                                 </header>
 
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form>
+                                    <form method="post" th:action="@{/lecture/update/{id}(id=${story.getId()})}"
+                                          th:object="${story}">
 
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Project</label>
-                                                    <select name="project" class="custom-select">
-                                                        <option></option>
-                                                    </select>
+                                                    <label class="col-form-label" for="lecture"> Lecture</label>
+                                                    <input class="form-control" id="lecture" placeholder="lecture"
+                                                           th:field="*{lecture}"
+                                                           type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="topics"> Topics</label>
+                                                    <input class="form-control" id="topics" placeholder="topics"
+                                                           th:field="*{topic}"
+                                                           type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="problem"> Definition</label>
+                                                    <input class="form-control" id="problem" placeholder="problem"
+                                                           th:field="*{definition}"
+                                                           type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -48,28 +71,9 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Assigned Employee</label>
-                                                    <select name="assignedemployee" class="custom-select">
-                                                        <option></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="tasksubject" class="col-form-label">Task Subject</label>
-                                                    <input id="tasksubject" type="text" class="form-control" placeholder="task subject">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="taskdetail">Task Detail</label>
-                                                    <textarea id="taskdetail" class="form-control" placeholder="task detail"></textarea>
+                                                    <label for="solution">Solution</label>
+                                                    <textarea class="form-control" id="solution" placeholder="solution"
+                                                              th:field="*{solution}"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -77,10 +81,12 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="float-right">
-                                                    <button class="btn btn-success rounded-0" type="submit">Save</button>
+                                                    <button class="btn btn-success rounded-0" type="submit">Save
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                     </form>
                                     <!-- ------------------------FORM END----------------------------- -->
@@ -95,6 +101,8 @@
 
                 </div>
 
+
+                <!-- ------------------------TABLE START----------------------------- -->
                 <!-- ------------------------TABLE START----------------------------- -->
 
                 <div class="row">
@@ -102,34 +110,42 @@
                         <div class="col-md-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Task List</h2>
+                                    <h2 class="panel-title">Project List</h2>
                                 </header>
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th scope="col">Project</th>
-                                                <th scope="col">Task Subject</th>
-                                                <th scope="col">Assigned Employee</th>
-                                                <th scope="col">Assigned Date</th>
+                                                <th scope="col">Lecture/Topic</th>
+                                                <th scope="col">Definition</th>
+                                                <th scope="col">Solution</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="actions">
-                                                    <a href="#" class="btn btn-warning rounded-0">Update</a>
-                                                    <a href="#" class="btn btn-danger rounded-0">Solution</a>
-                                                    <a href="#" class="btn btn-danger rounded-0">Delete</a>
-                                                </td>
+                                            <tr th:each="story : ${stories}">
+                                                <td th:text="${story.lecture  + '-' + story.topic}"></td>
+                                                <td th:text="${story.definition}"></td>
+                                                <td th:text="${story.solution}"></td>
+                                                <td th:text="${story.status.value}"></td>
+                                                <td>
+                                                    <a class="btn btn-warning rounded-0"
+                                                       th:href="@{/lecture/update/{id}(id=${story.getId()})}"
+                                                       th:if="${story.status.value != 'Completed'}">Update
+                                                    </a>
+                                                    <a class="btn btn-warning rounded-0 disabled-button"
+                                                       th:if="${story.status.value == 'Completed'}">Update
+                                                    </a>
 
+
+                                                    <a th:href="@{/lecture/delete/{id}(id=${story.getId()})}">
+                                                        <button class="btn btn-danger rounded-0" type="button">Delete
+                                                        </button>
+                                                    </a>
+
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
