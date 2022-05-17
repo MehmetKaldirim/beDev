@@ -13,3 +13,7 @@ INSERT INTO stories (definition,lecture,solution,status,topic,is_deleted) VALUES
 INSERT INTO stories (definition,lecture,solution,status,topic,is_deleted) VALUES ('handling the Transaction in Spring','JAVA SPRING','Use @Transactional annotation','COMPLETE','ORM','FALSE')
 INSERT INTO stories (definition,lecture,solution,status,topic,is_deleted) VALUES ('deleting something Database','JAVA SPRING DATA',' create a field isDeleted and use @Where annotation  and set it true','OPEN','ORM','FALSE')
 
+INSERT INTO annotations (is_deleted,annotation,explanation,lecture,topic) VALUES ('FALSE', '@Controller','It is use above the controller class','JAVA SPRING','MVC')
+INSERT INTO annotations (is_deleted,annotation,explanation,lecture,topic) VALUES ('FALSE', '@Component','Use class Level, use DI for creat bean or need a bean','JAVA SPRING','MVC')
+INSERT INTO annotations (is_deleted,annotation,explanation,lecture,topic) VALUES ('FALSE', '@Service','It is use above the service impl class iot create a bean from service class','JAVA SPRING','MVC')
+

@@ -1,9 +1,6 @@
 package com.zeroToDev.service.impl;
-
 import com.zeroToDev.dto.StoryDTO;
-import com.zeroToDev.dto.UserDTO;
 import com.zeroToDev.entity.Story;
-import com.zeroToDev.entity.User;
 import com.zeroToDev.enums.Status;
 import com.zeroToDev.mapper.StoryMapper;
 import com.zeroToDev.repository.StoryRepository;

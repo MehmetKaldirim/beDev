@@ -32,7 +32,7 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form method="post" th:action="@{/lecture/create}" th:object="${story}">
+                                    <form method="post" th:action="@{/annotation/create}" th:object="${annotation}">
 
 
                                         <div class="row">
@@ -60,9 +60,9 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label" for="problem"> Definition</label>
-                                                    <input class="form-control" id="problem" placeholder="problem"
-                                                           th:field="*{definition}"
+                                                    <label class="col-form-label" for="annotation"> Annotation</label>
+                                                    <input class="form-control" id="annotation" placeholder="annotation"
+                                                           th:field="*{annotation}"
                                                            type="text">
                                                 </div>
                                             </div>
@@ -71,9 +71,9 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="solution">Solution</label>
-                                                    <textarea class="form-control" id="solution" placeholder="solution"
-                                                              th:field="*{solution}"></textarea>
+                                                    <label for="explanation">Explanation</label>
+                                                    <textarea class="form-control" id="explanation" placeholder="explanation"
+                                                              th:field="*{explanation}"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,27 +120,22 @@
                                                 <th scope="col">Lecture/Topic</th>
                                                 <th scope="col">Definition</th>
                                                 <th scope="col">Solution</th>
-                                                <th scope="col">Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="story : ${stories}">
-                                                <td th:text="${story.lecture  + '-' + story.topic}"></td>
-                                                <td th:text="${story.definition}"></td>
-                                                <td th:text="${story.solution}"></td>
-                                                <td th:text="${story.status.value}"></td>
+                                            <tr th:each="ann : ${annotations}">
+                                                <td th:text="${ann.lecture  + '-' + ann.topic}"></td>
+                                                <td th:text="${ann.annotation}"></td>
+                                                <td th:text="${ann.explanation}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0"
-                                                       th:href="@{/lecture/update/{id}(id=${story.getId()})}"
-                                                       th:if="${story.status.value != 'Completed'}">Update
-                                                    </a>
-                                                    <a class="btn btn-warning rounded-0 disabled-button"
-                                                       th:if="${story.status.value == 'Completed'}">Update
+                                                       th:href="@{/annotation/update/{id}(id=${ann.getId()})}">
+                                                        <button class="btn btn-danger rounded-0" type="button">Update
+                                                        </button>
                                                     </a>
 
-
-                                                    <a th:href="@{/lecture/delete/{id}(id=${story.getId()})}">
+                                                    <a th:href="@{/annotation/delete/{id}(id=${ann.getId()})}">
                                                         <button class="btn btn-danger rounded-0" type="button">Delete
                                                         </button>
                                                     </a>

@@ -1,33 +1,31 @@
 package com.zeroToDev.controller;
 
 import com.zeroToDev.dto.StoryDTO;
-import com.zeroToDev.dto.UserDTO;
 
 import com.zeroToDev.service.StoryService;
-import com.zeroToDev.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/lecture")
-public class LectureController {
+@RequestMapping("/story")
+public class StoryController {
 
     private final StoryService storyService;
 
-    public LectureController(StoryService storyService) {
+    public StoryController(StoryService storyService) {
         this.storyService = storyService;
     }
 
     @GetMapping("/create")
-    public String createUser(Model model) {
+    public String createStory(Model model) {
 
         model.addAttribute("story", new StoryDTO());
         model.addAttribute("stories", storyService.listAllStories());
 
 
-        return "/lecture/create";
+        return "/story/story-create";
     }
 
     @PostMapping("/create")
@@ -35,14 +33,14 @@ public class LectureController {
 
         storyService.save(story);
 
-        return "redirect:/lecture/create";
+        return "redirect:/story/create";
 
     }
 
     @GetMapping("/delete/{storyId}")
     public String deleteStory(@PathVariable("storyId") Long storyId) {
         storyService.delete(storyId);
-        return "redirect:/lecture/create";
+        return "redirect:/story/create";
     }
 
     @GetMapping("/update/{id}")
@@ -51,7 +49,7 @@ public class LectureController {
         model.addAttribute("story", storyService.findById(id));
         model.addAttribute("stories", storyService.listAllStories());
 
-        return "lecture/update";
+        return "/story/story-update";
 
     }
 
@@ -63,12 +61,12 @@ public class LectureController {
 
             model.addAttribute("stories", storyService.listAllStories());
 
-            return "/lecture/update";
+            return "/story/story-update";
 
         }
 
         storyService.update(story);
-        return "redirect:/lecture/create";
+        return "redirect:/story/create";
     }
 
 

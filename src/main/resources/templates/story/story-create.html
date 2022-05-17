@@ -32,8 +32,8 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form method="post" th:action="@{/lecture/update/{id}(id=${story.getId()})}"
-                                          th:object="${story}">
+                                    <form method="post" th:action="@{/story/create}" th:object="${story}">
+
 
                                         <div class="row">
                                             <div class="col">
@@ -60,8 +60,8 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label" for="problem"> Definition</label>
-                                                    <input class="form-control" id="problem" placeholder="problem"
+                                                    <label class="col-form-label" for="definition"> Definition</label>
+                                                    <input class="form-control" id="definition" placeholder="problem"
                                                            th:field="*{definition}"
                                                            type="text">
                                                 </div>
@@ -132,7 +132,7 @@
                                                 <td th:text="${story.status.value}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0"
-                                                       th:href="@{/lecture/update/{id}(id=${story.getId()})}"
+                                                       th:href="@{/story/update/{id}(id=${story.getId()})}"
                                                        th:if="${story.status.value != 'Completed'}">Update
                                                     </a>
                                                     <a class="btn btn-warning rounded-0 disabled-button"
@@ -140,7 +140,7 @@
                                                     </a>
 
 
-                                                    <a th:href="@{/lecture/delete/{id}(id=${story.getId()})}">
+                                                    <a th:href="@{/story/delete/{id}(id=${story.getId()})}">
                                                         <button class="btn btn-danger rounded-0" type="button">Delete
                                                         </button>
                                                     </a>
