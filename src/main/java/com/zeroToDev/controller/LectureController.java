@@ -1,6 +1,8 @@
 package com.zeroToDev.controller;
 
+import com.zeroToDev.dto.LectureDTO;
 import com.zeroToDev.dto.StoryDTO;
+import com.zeroToDev.service.LectureService;
 import com.zeroToDev.service.StoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,45 +10,45 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/story")
+@RequestMapping("/lecture")
 public class LectureController {
 
-    private final StoryService storyService;
+    private final LectureService lectureService;
 
-    public LectureController(StoryService storyService) {
-        this.storyService = storyService;
+    public LectureController(LectureService lectureService) {
+        this.lectureService = lectureService;
     }
 
     @GetMapping("/create")
-    public String createStory(Model model) {
+    public String createLecture(Model model) {
 
-        model.addAttribute("story", new StoryDTO());
-        model.addAttribute("stories", storyService.listAllStories());
+        model.addAttribute("lecture", new LectureDTO());
+        model.addAttribute("lectures", lectureService.listAllLectures());
 
 
-        return "/story/story-create";
+        return "/lecture/lecture-create";
     }
 
     @PostMapping("/create")
-    public String insertStory(@ModelAttribute("story") StoryDTO story, Model model) {
+    public String insertLecture(@ModelAttribute("lecture") LectureDTO lecture, Model model) {
 
-        storyService.save(story);
+        lectureService.save(lecture);
 
-        return "redirect:/story/create";
+        return "redirect:/lecture/create";
 
     }
-
+/*
     @GetMapping("/delete/{storyId}")
     public String deleteStory(@PathVariable("storyId") Long storyId) {
-        storyService.delete(storyId);
+        lectureService.delete(storyId);
         return "redirect:/story/create";
     }
 
     @GetMapping("/update/{id}")
     public String editStory(@PathVariable("id") Long id, Model model) {
 
-        model.addAttribute("story", storyService.findById(id));
-        model.addAttribute("stories", storyService.listAllStories());
+        model.addAttribute("story", lectureService.findById(id));
+        model.addAttribute("stories", lectureService.listAllStories());
 
         return "/story/story-update";
 
@@ -68,5 +70,5 @@ public class LectureController {
         return "redirect:/story/create";
     }
 
-
+*/
 }

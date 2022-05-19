@@ -39,9 +39,9 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label" for="topics"> Topics</label>
-                                                    <input class="form-control" id="topics" placeholder="topics"
-                                                           th:field="*{topic}"
+                                                    <label class="col-form-label" for="name"> Lecture Name</label>
+                                                    <input class="form-control" id="name" placeholder="name"
+                                                           th:field="*{lectureName}"
                                                            type="text">
                                                 </div>
                                             </div>
@@ -108,25 +108,25 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th scope="col">Topics</th>
-                                                <th scope="col">Completed Duration</th>
-                                                <th scope="col">Expected Duration</th>
-                                                <th scope="col">Action</th>
+                                                <th scope="col">Lecture Name</th>
+                                                <th scope="col">Completed Duration(hours)</th>
+                                                <th scope="col">Expected Duration (hours)</th>
+                                                <th scope="col">Level</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr th:each="lecture : ${lectures}">
-                                                <td th:text="${lecture.name}"></td>
-                                                <td th:text="${lecture.completedDuration}"></td>
+                                                <td th:text="${lecture.lectureName}"></td>
+                                                <td th:text="${lecture.completedDuration/60 +' hours ' + lecture.completedDuration%60 + ' min'}"></td>
                                                 <td th:text="${lecture.expectedDuration}"></td>
-                                                <td th:text="${lecture.status.value}"></td>
+                                                <td th:text="${lecture.level.value}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0"
                                                        th:href="@{/lecture/update/{id}(id=${lecture.getId()})}"
-                                                       th:if="${lecture.status.value != 'Completed'}">Update
+                                                       th:if="${lecture.level.value != 'Pro'}">Update
                                                     </a>
                                                     <a class="btn btn-warning rounded-0 disabled-button"
-                                                       th:if="${lecture.status.value == 'Completed'}">Update
+                                                       th:if="${lecture.level.value == 'Pro'}">Update
                                                     </a>
 
 
