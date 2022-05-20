@@ -32,60 +32,50 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form method="post" th:action="@{/story/update/{id}(id=${story.getId()})}"
-                                          th:object="${story}">
+                                    <form method="post" th:action="@{/lecture/update/{id}(id=${lecture.getId()})}"
+                                          th:object="${lecture}">
 
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="col-form-label" for="lecture"> Lecture</label>
-                                                    <input class="form-control" id="lecture" placeholder="lecture"
-                                                           th:field="*{lecture}"
-                                                           type="text">
-                                                </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="name"> Lecture Name</label>
+                                                <input class="form-control" id="name" placeholder="name"
+                                                       th:field="*{lectureName}"
+                                                       type="text">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="col-form-label" for="topics"> Topics</label>
-                                                    <input class="form-control" id="topics" placeholder="topics"
-                                                           th:field="*{topic}"
-                                                           type="text">
-                                                </div>
-                                            </div>
-                                        </div>
+                                    </div>
 
 
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="col-form-label" for="definition"> Definition</label>
-                                                    <input class="form-control" id="definition" placeholder="problem"
-                                                           th:field="*{definition}"
-                                                           type="text">
-                                                </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="duration"> Duration</label>
+                                                <input class="form-control" id="duration" placeholder="duration"
+                                                       th:field="*{completedDuration}"
+                                                       type="text">
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="solution">Solution</label>
-                                                    <textarea class="form-control" id="solution" placeholder="solution"
-                                                              th:field="*{solution}"></textarea>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="expectedDuration">Expected Duration</label>
+                                                <textarea class="form-control" id="expectedDuration" placeholder="expectedDuration"
+                                                          th:field="*{expectedDuration}"></textarea>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="float-right">
-                                                    <button class="btn btn-success rounded-0" type="submit">Save
-                                                    </button>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="float-right">
+                                                <button class="btn btn-success rounded-0" type="submit">Save
+                                                </button>
                                             </div>
                                         </div>
+                                    </div>
 
 
                                     </form>
@@ -110,7 +100,7 @@
                         <div class="col-md-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Story List</h2>
+                                    <h2 class="panel-title">Project List</h2>
                                 </header>
                                 <div class="panel-body">
                                     <div class="table-responsive">

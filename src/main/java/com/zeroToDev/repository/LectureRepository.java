@@ -1,10 +1,9 @@
 package com.zeroToDev.repository;
 
-import com.zeroToDev.entity.Story;
+import com.zeroToDev.entity.Lecture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StoryRepository extends JpaRepository<Story,Long> {
-
+public interface LectureRepository extends JpaRepository<Lecture,Long> {
 }
