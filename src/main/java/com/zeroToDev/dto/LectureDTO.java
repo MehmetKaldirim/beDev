@@ -19,7 +19,7 @@ public class LectureDTO {
 
     private Long id;
     private String lectureName;
-    private TopicDTO topic;
+
 
     private Integer workHours;
     private Integer completedDuration;

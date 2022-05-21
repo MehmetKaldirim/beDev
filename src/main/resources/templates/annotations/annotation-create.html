@@ -39,11 +39,9 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Lecture Name</label>
-                                                    <select th:field="*{lecture}" class="custom-select">
+                                                    <select  th:field="*{lecture}" class="custom-select">
                                                         <option th:value="''" th:text="Select"></option>
-                                                        <option th:each="lec : ${lectures}"
-                                                                th:value="${lec.lectureName}"
-                                                                th:text="${lec.lectureName}"></option>
+                                                        <option th:each="lecture : ${lectures}" th:value="${lecture.id}" th:text="${lecture.lectureName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback"
                                                          th:if="${#fields.hasErrors('lecture')}">
@@ -59,11 +57,9 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Lecture Name</label>
-                                                    <select th:field="*{topic}" class="custom-select">
+                                                    <select  th:field="*{topic}" class="custom-select">
                                                         <option th:value="''" th:text="Select"></option>
-                                                        <option th:each="top : ${topics}"
-                                                                th:value="${top.topicName}"
-                                                                th:text="${top.topicName}"></option>
+                                                        <option th:each="top : ${topics}" th:value="${top.id}" th:text="${top.topicName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback"
                                                          th:if="${#fields.hasErrors('topic')}">
@@ -75,7 +71,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="row">
                                             <div class="col">
@@ -145,7 +140,7 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="ann : ${annotations}">
-                                                <td th:text="${ann.lecture  + '-' + ann.topic}"></td>
+                                                <td th:text="${ann.lecture.lectureName  + '-' + ann.topic.topicName}"></td>
                                                 <td th:text="${ann.annotation}"></td>
                                                 <td th:text="${ann.explanation}"></td>
                                                 <td>

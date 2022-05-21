@@ -1,5 +1,6 @@
 package com.zeroToDev.service;
 
+import com.zeroToDev.dto.LectureDTO;
 import com.zeroToDev.dto.StoryDTO;
 import com.zeroToDev.dto.TopicDTO;
 
@@ -13,5 +14,5 @@ public interface TopicService {
     void delete(Long id);
     void updateStatus(TopicDTO dto);
 
-    StoryDTO findById(Long id);
+    TopicDTO retrieveById(Long id);
 }

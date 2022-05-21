@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Where(clause= "is_deleted=false")
 public class Annotation extends BaseEntity{
 
-    private String lecture;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Lecture lecture;
     @ManyToOne(fetch = FetchType.LAZY)
     private Topic topic;
     private String annotation;

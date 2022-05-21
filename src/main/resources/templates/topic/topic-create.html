@@ -56,12 +56,13 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Lecture Name</label>
-                                                    <select th:field="*{lecture}" class="custom-select">
+
+                                                    <select  th:field="*{lecture}" class="custom-select">
                                                         <option th:value="''" th:text="Select"></option>
-                                                        <option th:each="lec : ${lectures}"
-                                                                th:value="${lec.lectureName}"
-                                                                th:text="${lec.lectureName}"></option>
+                                                        <option th:each="lecture : ${lectures}" th:value="${lecture.id}" th:text="${lecture.lectureName}"></option>
                                                     </select>
+
+
                                                     <div class="invalid-feedback"
                                                          th:if="${#fields.hasErrors('lecture')}">
                                                         <ul>
@@ -156,9 +157,8 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">Topic Name</th>
-                                                <th scope="col">Crete/Review Date</th>
+                                                <th scope="col">Crete Date</th>
                                                 <th scope="col">Complete/Total Duration</th>
-                                                <th scope="col">Question/Story/Annotation</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -166,12 +166,8 @@
                                             <tbody>
                                             <tr th:each="topic : ${topics}">
                                                 <td th:text="${topic.topicName}"></td>
-                                                <td th:if="${topic.createDate <topic.lastReviewDate }"
-                                                    th:text="${#temporals.format(topic.createDate,'MM.dd.yyyy')}"></td>
-                                                <td th:if="${topic.createDate > topic.lastReviewDate }"
-                                                    th:text="${#temporals.format(topic.lastReviewDate,'MM.dd.yyyy')}"></td>
+                                                <td th:text="${#temporals.format(topic.createDate,'MM.dd.yyyy')}"></td>
                                                 <td th:text="${topic.completedDuration + 'min / ' + topic.totalDuration + ' min'}"></td>
-                                                <td th:text="${'0'+'0'+'0'}"></td>
                                                 <td th:text="${topic.status.value}"></td>
                                                 <td>
                                                     <a th:if="${topic.status.value != 'Completed'}"

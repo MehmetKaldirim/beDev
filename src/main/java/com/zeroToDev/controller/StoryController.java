@@ -2,7 +2,9 @@ package com.zeroToDev.controller;
 
 import com.zeroToDev.dto.StoryDTO;
 
+import com.zeroToDev.service.LectureService;
 import com.zeroToDev.service.StoryService;
+import com.zeroToDev.service.TopicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,9 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class StoryController {
 
     private final StoryService storyService;
+    private final TopicService topicService;
+    private final LectureService lectureService;
 
-    public StoryController(StoryService storyService) {
+    public StoryController(StoryService storyService, TopicService topicService, LectureService lectureService) {
         this.storyService = storyService;
+        this.topicService = topicService;
+        this.lectureService = lectureService;
     }
 
     @GetMapping("/create")
@@ -23,7 +29,8 @@ public class StoryController {
 
         model.addAttribute("story", new StoryDTO());
         model.addAttribute("stories", storyService.listAllStories());
-
+        model.addAttribute("topics",topicService.listAllTopics());
+        model.addAttribute("lectures",lectureService.listAllLectures());
 
         return "/story/story-create";
     }

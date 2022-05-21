@@ -1,7 +1,6 @@
 package com.zeroToDev.service;
 
 import com.zeroToDev.dto.LectureDTO;
-import com.zeroToDev.dto.StoryDTO;
 
 import java.util.List;
 
@@ -14,5 +13,7 @@ public interface LectureService {
     void delete(Long id);
     void updateStatus(LectureDTO dto);
 
-    LectureDTO findById(Long id);
+
+
+    LectureDTO retrieveById(Long id);
 }

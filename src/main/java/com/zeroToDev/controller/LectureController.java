@@ -47,7 +47,7 @@ public class LectureController {
     @GetMapping("/update/{id}")
     public String editStory(@PathVariable("id") Long id, Model model) {
 
-        model.addAttribute("lecture", lectureService.findById(id));
+        model.addAttribute("lecture", lectureService.retrieveById(id));
         model.addAttribute("lectures", lectureService.listAllLectures());
 
         return "/lecture/lecture-update";
