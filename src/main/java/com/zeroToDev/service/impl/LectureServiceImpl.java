@@ -30,7 +30,8 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public void save(LectureDTO dto) {
 
-        dto.setLevel(Level.BEGINNER);
+        dto.setLectureLevel(Level.BEGINNER);
+        //dto.setProjectStatus(Status.OPEN);
         Lecture lecture = mapperUtil.convert(dto,new Lecture());
         lectureRepository.save(lecture);
 

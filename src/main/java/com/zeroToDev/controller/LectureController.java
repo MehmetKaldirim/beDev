@@ -37,38 +37,38 @@ public class LectureController {
         return "redirect:/lecture/create";
 
     }
-/*
-    @GetMapping("/delete/{storyId}")
-    public String deleteStory(@PathVariable("storyId") Long storyId) {
-        lectureService.delete(storyId);
-        return "redirect:/story/create";
+
+    @GetMapping("/delete/{id}")
+    public String deleteStory(@PathVariable("id") Long id) {
+        lectureService.delete(id);
+        return "redirect:/lecture/create";
     }
 
     @GetMapping("/update/{id}")
     public String editStory(@PathVariable("id") Long id, Model model) {
 
-        model.addAttribute("story", lectureService.findById(id));
-        model.addAttribute("stories", lectureService.listAllStories());
+        model.addAttribute("lecture", lectureService.findById(id));
+        model.addAttribute("lectures", lectureService.listAllLectures());
 
-        return "/story/story-update";
+        return "/lecture/lecture-update";
 
     }
 
     @PostMapping("/update/{id}")
-    public String updateStory(@ModelAttribute("story") StoryDTO story, BindingResult bindingResult, Model model) {
+    public String updateStory(@ModelAttribute("lecture") LectureDTO lecture, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
 
 
-            model.addAttribute("stories", storyService.listAllStories());
+            model.addAttribute("lectures", lectureService.listAllLectures());
 
             return "/story/story-update";
 
         }
 
-        storyService.update(story);
-        return "redirect:/story/create";
+        lectureService.update(lecture);
+        return "redirect:/lecture/create";
     }
 
-*/
+
 }

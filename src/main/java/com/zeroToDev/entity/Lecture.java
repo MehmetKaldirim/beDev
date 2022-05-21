@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Data
@@ -19,9 +19,18 @@ public class Lecture extends BaseEntity{
 
     private String lectureName;
 
-    private Integer countOfTopics;
+    private Integer countOfTopics = 0;
 
+
+    private Integer workHours;
     private Integer completedDuration;
     private Integer expectedDuration;
-    private Level level;
+
+    @Enumerated(EnumType.STRING)
+    private Level lectureLevel;
+
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate createdDate;
+    private String lectureIntro;
 }

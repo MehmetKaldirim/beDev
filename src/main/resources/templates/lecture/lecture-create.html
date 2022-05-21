@@ -47,28 +47,53 @@
                                             </div>
                                         </div>
 
-
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label" for="duration"> Duration</label>
-                                                    <input class="form-control" id="duration" placeholder="duration"
-                                                           th:field="*{completedDuration}"
-                                                           type="text">
+                                                    <label for="createdate">Lecture Create Date</label>
+                                                    <input id="createdate" th:field="*{createdDate}" type="date"
+                                                           class="form-control">
+                                                    <div class="invalid-feedback"
+                                                         th:if="${#fields.hasErrors('createdDate')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('createdDate')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="totalduration" class="col-form-label">Expected Total Duration</label>
+                                                    <input id="totalduration" th:field="*{expectedDuration}" type="text"
+                                                           class="form-control" placeholder="total minutes">
+                                                    <div class="invalid-feedback"
+                                                         th:if="${#fields.hasErrors('expectedDuration')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('expectedDuration')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label" for="expectedDuration"> Duration</label>
-                                                    <input class="form-control" id="expectedDuration" placeholder="expectedDuration"
-                                                           th:field="*{expectedDuration}"
-                                                           type="text">
+                                                    <label for="lectureintro">Lecture Introduction</label>
+                                                    <textarea id="lectureintro" th:field="*{lectureIntro}"
+                                                              class="form-control"
+                                                              placeholder="lecture introduction"></textarea>
+                                                    <div class="invalid-feedback"
+                                                         th:if="${#fields.hasErrors('lectureIntro')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('lectureIntro')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="row">
                                             <div class="col">
@@ -110,26 +135,26 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">Lecture Name</th>
-                                                <th scope="col">Completed Duration(hours)</th>
-                                                <th scope="col">Expected Duration (hours)</th>
+                                                <th scope="col">Expected Duration(hours)</th>
+                                                <th scope="col">Created Date</th>
                                                 <th scope="col">Level</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr th:each="lecture : ${lectures}">
                                                 <td th:text="${lecture.lectureName}"></td>
-                                                <td th:text="${lecture.completedDuration/60 +' hours ' + lecture.completedDuration%60 + ' min'}"></td>
-                                                <td th:text="${lecture.expectedDuration}"></td>
-                                                <td th:text="${lecture.level.value}"></td>
+                                                <td th:text="${lecture.expectedDuration/60 +' hours ' + lecture.expectedDuration%60 + ' min'}"></td>
+                                                <td th:text="${#temporals.format(lecture.createdDate,'MM.dd.yyyy')}"></td>
+                                                <td th:text="${lecture.lectureLevel.value}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0"
                                                        th:href="@{/lecture/update/{id}(id=${lecture.getId()})}"
-                                                       th:if="${lecture.level.value != 'Pro'}">Update
+                                                       th:if="${lecture.lectureLevel.value!= 'Pro'}">Update
                                                     </a>
                                                     <a class="btn btn-warning rounded-0 disabled-button"
-                                                       th:if="${lecture.level.value == 'Pro'}">Update
+                                                       th:if="${lecture.lectureLevel.value == 'Pro'}">Update
                                                     </a>
-
 
                                                     <a th:href="@{/lecture/delete/{id}(id=${lecture.getId()})}">
                                                         <button class="btn btn-danger rounded-0" type="button">Delete

@@ -26,7 +26,7 @@ public class TopicController {
     public String createTopic(Model model) {
 
         model.addAttribute("topic", new TopicDTO());
-        model.addAttribute("topicss", topicService.listAllTopics());
+        model.addAttribute("topics", topicService.listAllTopics());
         model.addAttribute("lectures", lectureService.listAllLectures());
 
 
