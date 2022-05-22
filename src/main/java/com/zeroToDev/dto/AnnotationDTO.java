@@ -16,4 +16,5 @@ public class AnnotationDTO {
 
     private String annotation;
     private String explanation;
+    private Integer countOfReviews = 0;
 }

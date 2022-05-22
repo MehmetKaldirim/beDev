@@ -20,5 +20,6 @@ public class Annotation extends BaseEntity{
     private Topic topic;
     private String annotation;
     private String explanation;
+    private Integer countOfReviews = 0;
 
 }

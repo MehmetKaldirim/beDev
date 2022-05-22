@@ -26,7 +26,7 @@
 
                             <section class="panel panel-transparent">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Create Your Story</h2>
+                                    <h2 class="panel-title">Add Your Annotation</h2>
                                 </header>
 
                                 <div class="panel-body">
@@ -145,10 +145,13 @@
                                                 <td th:text="${ann.explanation}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0"
-                                                       th:href="@{/annotation/update/{id}(id=${ann.getId()})}">
-                                                        <button class="btn btn-danger rounded-0" type="button">Update
-                                                        </button>
+                                                       th:href="@{/annotation/update/{id}(id=${ann.getId()})}"
+                                                       th:if="${ann.countOfReviews < 5 }">Update
                                                     </a>
+                                                    <a class="btn btn-warning rounded-0 disabled-button"
+                                                       th:if="${ann.countOfReviews >= 5}">Update
+                                                    </a>
+
 
                                                     <a th:href="@{/annotation/delete/{id}(id=${ann.getId()})}">
                                                         <button class="btn btn-danger rounded-0" type="button">Delete
