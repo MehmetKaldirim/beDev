@@ -4,6 +4,7 @@ import com.zeroToDev.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -24,7 +25,10 @@ public class TopicDTO {
     private Integer countOfDefinitions = 0;
     private Integer countOfStories = 0;
     private Integer countOfReview = 0;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastReviewDate;
 
     private Status status;

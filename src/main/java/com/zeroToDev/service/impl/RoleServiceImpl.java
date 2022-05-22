@@ -29,9 +29,11 @@ public class RoleServiceImpl  implements RoleService {
         // controlling calling me and want all roles and where they are in Repository
         //how can i call them of coz injection
 
+
         List<Role> roleList = roleRepository.findAll();
         //here i need mechanism convert roleList to RoleDTO = it is Mapper a new Story begin
         List<RoleDTO> list2= roleList.stream().map(roleMapper :: convertToDto).collect(Collectors.toList());
+
         return list2;
     }
 

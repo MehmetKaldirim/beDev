@@ -26,7 +26,7 @@
 
                             <section class="panel panel-transparent">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Create Your Story</h2>
+                                    <h2 class="panel-title">Add Your Annotation</h2>
                                 </header>
 
                                 <div class="panel-body">
@@ -38,24 +38,39 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label" for="lecture"> Lecture</label>
-                                                    <input class="form-control" id="lecture" placeholder="lecture"
-                                                           th:field="*{lecture}"
-                                                           type="text">
+                                                    <label>Lecture Name</label>
+                                                    <select  th:field="*{lecture}" class="custom-select">
+                                                        <option th:value="''" th:text="Select"></option>
+                                                        <option th:each="lecture : ${lectures}" th:value="${lecture.id}" th:text="${lecture.lectureName}"></option>
+                                                    </select>
+                                                    <div class="invalid-feedback"
+                                                         th:if="${#fields.hasErrors('lecture')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('lecture')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label" for="topics"> Topics</label>
-                                                    <input class="form-control" id="topics" placeholder="topics"
-                                                           th:field="*{topic}"
-                                                           type="text">
+                                                    <label>Lecture Name</label>
+                                                    <select  th:field="*{topic}" class="custom-select">
+                                                        <option th:value="''" th:text="Select"></option>
+                                                        <option th:each="top : ${topics}" th:value="${top.id}" th:text="${top.topicName}"></option>
+                                                    </select>
+                                                    <div class="invalid-feedback"
+                                                         th:if="${#fields.hasErrors('topic')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('topic')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="row">
                                             <div class="col">
@@ -118,22 +133,25 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">Lecture/Topic</th>
-                                                <th scope="col">Definition</th>
-                                                <th scope="col">Solution</th>
+                                                <th scope="col">Annotation</th>
+                                                <th scope="col">Explanation</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr th:each="ann : ${annotations}">
-                                                <td th:text="${ann.lecture  + '-' + ann.topic}"></td>
+                                                <td th:text="${ann.lecture.lectureName  + '-' + ann.topic.topicName}"></td>
                                                 <td th:text="${ann.annotation}"></td>
                                                 <td th:text="${ann.explanation}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0"
-                                                       th:href="@{/annotation/update/{id}(id=${ann.getId()})}">
-                                                        <button class="btn btn-danger rounded-0" type="button">Update
-                                                        </button>
+                                                       th:href="@{/annotation/update/{id}(id=${ann.getId()})}"
+                                                       th:if="${ann.countOfReviews < 5 }">Update
                                                     </a>
+                                                    <a class="btn btn-warning rounded-0 disabled-button"
+                                                       th:if="${ann.countOfReviews >= 5}">Update
+                                                    </a>
+
 
                                                     <a th:href="@{/annotation/delete/{id}(id=${ann.getId()})}">
                                                         <button class="btn btn-danger rounded-0" type="button">Delete

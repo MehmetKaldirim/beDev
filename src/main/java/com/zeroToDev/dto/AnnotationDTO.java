@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 public class AnnotationDTO {
 
     private Long id;
-    private String lecture;
-    private String topic;
+    private LectureDTO lecture;
+    private TopicDTO topic;
 
     private String annotation;
     private String explanation;
+    private Integer countOfReviews = 0;
 }
