@@ -31,7 +31,7 @@ public class Topic extends BaseEntity{
     private Integer countOfAnnotations = 0;
     private Integer countOfDefinitions = 0;
     private Integer countOfStories = 0;
-    private Integer countOfReview = 0;
+    private Integer countOfReviews = 0;
 
     @Column(columnDefinition = "DATE")
     private LocalDate createDate;

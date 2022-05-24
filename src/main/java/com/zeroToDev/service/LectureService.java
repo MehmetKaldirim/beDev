@@ -11,9 +11,12 @@ public interface LectureService {
     void update(LectureDTO dto);
 
     void delete(Long id);
+
     void updateStatus(LectureDTO dto);
 
 
 
     LectureDTO retrieveById(Long id);
+
+    Long calculateCompletedDuration(String lectureName);
 }

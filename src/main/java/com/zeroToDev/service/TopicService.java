@@ -3,6 +3,7 @@ package com.zeroToDev.service;
 import com.zeroToDev.dto.LectureDTO;
 import com.zeroToDev.dto.StoryDTO;
 import com.zeroToDev.dto.TopicDTO;
+import com.zeroToDev.entity.Lecture;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface TopicService {
     void updateStatus(TopicDTO dto);
 
     TopicDTO retrieveById(Long id);
+
+    List<TopicDTO> readAllByLecture(String lectureName);
+
+
 }

@@ -181,11 +181,11 @@
                                                         <button type="button" class="btn btn-danger rounded-0">Delete
                                                         </button>
                                                     </a>
-                                                    <a th:if="${topic.countOfReview < 3 }"
+                                                    <a th:if="${topic.countOfReviews < 3 }"
                                                        class="btn btn-info rounded-0"
                                                        th:href="@{/project/complete/{id}(id=${topic.getId()})}">Complete
                                                     </a>
-                                                    <a th:if="${topic.countOfReview >= 3}"
+                                                    <a th:if="${topic.countOfReviews >= 3}"
                                                        class="btn btn-info rounded-0 disabled-button">Complete
                                                     </a>
                                                 </td>

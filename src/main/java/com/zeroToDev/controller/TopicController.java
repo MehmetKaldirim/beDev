@@ -1,14 +1,13 @@
 package com.zeroToDev.controller;
 
+import com.zeroToDev.dto.LectureDTO;
 import com.zeroToDev.dto.TopicDTO;
 import com.zeroToDev.service.LectureService;
 import com.zeroToDev.service.TopicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/topic")
@@ -41,7 +40,7 @@ public class TopicController {
         return "redirect:/topic/create";
 
     }
-/*
+
     @GetMapping("/delete/{storyId}")
     public String deleteStory(@PathVariable("storyId") Long storyId) {
         lectureService.delete(storyId);
@@ -51,28 +50,28 @@ public class TopicController {
     @GetMapping("/update/{id}")
     public String editStory(@PathVariable("id") Long id, Model model) {
 
-        model.addAttribute("story", lectureService.findById(id));
-        model.addAttribute("stories", lectureService.listAllStories());
+        model.addAttribute("lecture", lectureService.retrieveById(id));
+        model.addAttribute("lectures", lectureService.listAllLectures());
 
-        return "/story/story-update";
+        return "/lecture/lecture-update";
 
     }
 
     @PostMapping("/update/{id}")
-    public String updateStory(@ModelAttribute("story") StoryDTO story, BindingResult bindingResult, Model model) {
+    public String updateStory(@ModelAttribute("lecture") LectureDTO lecture, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
 
 
-            model.addAttribute("stories", storyService.listAllStories());
+            model.addAttribute("lectures", lectureService.listAllLectures());
 
             return "/story/story-update";
 
         }
 
-        storyService.update(story);
+        lectureService.update(lecture);
         return "redirect:/story/create";
     }
 
-*/
+
 }

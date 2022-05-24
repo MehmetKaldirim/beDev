@@ -21,12 +21,11 @@ public class Lecture extends BaseEntity{
 
     private String lectureName;
 
-    private Integer countOfTopics = 0;
+    private Long countOfTopics;
 
+    private Long completedDuration;
 
-    private Integer workHours;
-    private Integer completedDuration;
-    private Integer expectedDuration;
+    private Long expectedDuration;
 
     @Enumerated(EnumType.STRING)
     private Level lectureLevel;

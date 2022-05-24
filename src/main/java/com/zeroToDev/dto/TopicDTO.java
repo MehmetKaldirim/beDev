@@ -24,7 +24,7 @@ public class TopicDTO {
     private Integer countOfAnnotations = 0;
     private Integer countOfDefinitions = 0;
     private Integer countOfStories = 0;
-    private Integer countOfReview = 0;
+    private Integer countOfReviews = 0;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
 

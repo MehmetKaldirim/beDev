@@ -135,8 +135,9 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">Lecture Name</th>
-                                                <th scope="col">Expected Duration(hours)</th>
-                                                <th scope="col">Created Date</th>
+                                                <th scope="col">Completed / Total Duration(hours)</th>
+                                                <th scope="col">Creat Date</th>
+                                                <th scope="col">Count of Topics</th>
                                                 <th scope="col">Level</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -144,8 +145,9 @@
                                             <tbody>
                                             <tr th:each="lecture : ${lectures}">
                                                 <td th:text="${lecture.lectureName}"></td>
-                                                <td th:text="${lecture.expectedDuration/60 +' hours ' + lecture.expectedDuration%60 + ' min'}"></td>
+                                                <td th:text="${lecture.completedDuration +' min/' + lecture.expectedDuration + ' min'}"></td>
                                                 <td th:text="${#temporals.format(lecture.createdDate,'MM.dd.yyyy')}"></td>
+                                                <td th:text="${lecture.countOfTopics}"></td>
                                                 <td th:text="${lecture.lectureLevel.value}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0"
