@@ -20,11 +20,11 @@ public class LectureDTO {
     private Long id;
     private String lectureName;
 
+    private Long countOfTopics = 0L;
 
-    private Integer workHours;
-    private Integer completedDuration;
+    private Long completedDuration;
 
-    private Integer expectedDuration;
+    private Long expectedDuration;
 
     private Level lectureLevel;
 
